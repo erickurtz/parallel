@@ -1,0 +1,26 @@
+
+HW9 Instructions
+
+1. [wave1d]
+
+The program 'wave1d.c' in directory wave1d performs a simulation of a
+wave moving through a string.  It solves a discretized version of the
+1d wave equation.  The algorithm is similar to that of diffusion1d,
+except that the update function requires the TWO previous time-steps,
+not just one previous time-step.  For this reason, 3 copies of the
+solution arrays need to be maintained.
+
+Create a CUDA version named 'wave1d.cu'.  Parallelize the UPDATE
+routine only.
+
+Use configuration 'config0' with no output (wstep=0) to evaluate 
+the best performance improvement of your CUDA implementation.
+And the time cost should be reported as a comment in the first line 
+of the CUDA file as:
+
+// Cuda execution time: XXXXX sec.
+
+Additionally, you will have to update the given Makefile with rules 
+for testing your implementation.
+
+Submit: wave1d.cu, Makefile, config*.txt (all config txt files)

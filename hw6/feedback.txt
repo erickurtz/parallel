@@ -1,0 +1,16 @@
+95
+[10/10] correctly commit hw5
+
+[20] bank1
+	[20/20] Correct output and implementation
+
+[25] bank2
+	[20/25] Incorrect implementation
+		** the program has an occasional deadlock issue 
+		   If all depositor threads terminate and there is at least 
+		   one withdrawer thread waiting for the signal, then there 
+		   is a deadlock because no thread will either send a signal 
+		   or unlock 'mutex'.
+
+[45] heat
+	[45/45] Gif files are exactly same.

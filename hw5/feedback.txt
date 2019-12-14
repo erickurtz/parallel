@@ -1,0 +1,16 @@
+95
+[10/10] correctly commit hw5
+
+[30] all2all
+	[30/30] Correct output and implementation
+
+[30] integral
+	[25/30] Incorrect output and implementation
+		** in the 1st for loop, task is added after being sent.
+		   in the next while loop, task is added before being sent.
+		   so a number is skipped. 
+		   Then, the result will be different from the seq version.
+		   
+
+[30] pin
+	[30/30] Correct output and implementation

@@ -1,0 +1,62 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <assert.h>
+#include <math.h>
+
+int n, m;
+double result;
+double ** a;
+double ** dev_a;
+double *dev result; 
+
+void init (argc, char* argv[]){  assert(argc == 3);
+  n = atoi(argv[1]);
+  m = atoi(argv[2]);
+  result = 0.0;
+  a = (double **)malloc(n*sizeof(*a));
+  for (int i=0; i<n; i++) {
+    a[i] = (double *)malloc(m*sizeof(*a[i]));
+    for (int j=0; j<m; j++)
+      a[i][j] = i*2.0 + j*1.0;
+  }
+
+
+}
+
+__global__ void kernel(int *dev_a, size_t pitch, int n, int m){
+  __shared__ int results1d[m];
+
+  int tidx = blockIdx.x*blockDim.x + threadIdx.x;
+  int tidy = blockIdx.y*blockDim.y + threadIdx.y;
+  
+  //could change to while loop if needed 
+
+  if((tidx < n) && (tidy < m)){
+
+    int *row_a = (int *) ((char*)dev_a + tidy *pitch);
+    row_a[tidx] = row_a[tidx] * row_a[tidx];
+    
+			  
+  }
+  __syncthreads();
+
+
+
+  //double *result 
+  int row = 1111; //something here 
+  for(int i = n; i>0; i--){
+    result[row] += dev_a[row][i];
+    __syncthreads(); 
+  }
+
+  //send result back i guess. 
+
+}
+
+int main (int argc, char argv[]){
+  init(argc, argv);
+  size_t pitch;
+
+  cudaMallocPitch((void**) &dev_a, &pitch, n, m);
+  cudaMemcpy2D(dev_a, pitch, a, n*sizeof(int), n*sizeof(int), m, cudaMemcpyHostToDevice); 
+}
