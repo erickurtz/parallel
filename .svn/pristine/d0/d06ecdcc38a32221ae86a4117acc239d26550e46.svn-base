@@ -1,7 +1,0 @@
-Sequential: 
-Time: 3.33
-
-CUDA 
-Time: 1.32
-
-Speedup = 3.33/1.32 = 2.577
